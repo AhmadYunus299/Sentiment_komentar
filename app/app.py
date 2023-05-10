@@ -27,6 +27,9 @@ dataset_komentar_instagram_cyberbullying = pd.read_csv(
 vocab = list(pickle.load(open("app/kbest_feature.pickle", "rb")))
 model = load("app/model_sentiment_analisis.model")
 
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route("/", methods=["GET", "POST"])
 def my_form_post():

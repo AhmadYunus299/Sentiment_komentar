@@ -20,9 +20,7 @@ more_stopword = ['username', 'hadeww', 'lg', 'ATT', 'bgt', 'skrg',
                  'la', 'bs', '...',]
 stopwords_ind = stopwords_Comment_Instagram + more_stopword
 
-dataset_komentar_instagram_cyberbullying = pd.read_csv(
-    "app/dataset_komentar_instagram_cyberbullying.csv"
-)
+dataset_komentar_instagram_cyberbullying = pd.read_csv("app/dataset_komentar_instagram_cyberbullying.csv")
 
 vocab = list(pickle.load(open("app/kbest_feature.pickle", "rb")))
 model = load("app/model_sentiment_analisis.model")
@@ -30,9 +28,9 @@ model = load("app/model_sentiment_analisis.model")
 @app.route('/')
 def home():
     return render_template('index.html')
-
-@app.route("/", methods=["GET", "POST"])
-def my_form_post():
+    
+@app.route("/predict", methods=["GET", "POST"])
+def predict():
     if request.method == "POST":
         factory = StemmerFactory()
         stemmer = factory.create_stemmer()
